@@ -12,7 +12,8 @@ public class TravelPackageController {
         return null;
     }
     @PutMapping("/{id}")
-    public TravelPackage updateVehicleById(@RequestBody TravelPackage travelPackage) {
+    public TravelPackage updatePackageById(@RequestBody TravelPackage travelPackage) {
+
         return null;
     }
     @PostMapping("")
