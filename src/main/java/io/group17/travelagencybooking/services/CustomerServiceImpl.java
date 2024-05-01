@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public List<Booking> getPastBookings(Long customerId) {
+    public List<Booking> getPastBookings(Long customerId){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPastBookings'");
     }

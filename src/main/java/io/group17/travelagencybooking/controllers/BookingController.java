@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.group17.travelagencybooking.models.Booking;
+import io.group17.travelagencybooking.dtos.Bookingdto;
 import io.group17.travelagencybooking.services.BookingService;
 
 @RestController
 @RequestMapping("/bookings")
 public class BookingController {
 
+    private final BookingService bookingService;
+
     @Autowired
-    private BookingService bookingService;
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllBookings() {
@@ -30,7 +34,7 @@ public class BookingController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getBookingById(@PathVariable Long id) {
-        Booking booking = bookingService.getBookingById(id);
+        Bookingdto booking = bookingService.getBookingById(id);
         if (booking == null) {
             return ResponseEntity.notFound().build();
         }
@@ -38,14 +42,14 @@ public class BookingController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
-        Booking createdBooking = bookingService.createBooking(booking);
+    public ResponseEntity<?> createBooking(@RequestBody Bookingdto bookingDto) {
+        Bookingdto createdBooking = bookingService.createBooking(bookingDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateBooking(@PathVariable Long id, @RequestBody Booking updatedBooking) {
-        Booking updated = bookingService.updateBooking(id, updatedBooking);
+    public ResponseEntity<?> updateBooking(@PathVariable Long id, @RequestBody Bookingdto updatedBookingDto) {
+        Bookingdto updated = bookingService.updateBooking(id, updatedBookingDto);
         if (updated == null) {
             return ResponseEntity.notFound().build();
         }
