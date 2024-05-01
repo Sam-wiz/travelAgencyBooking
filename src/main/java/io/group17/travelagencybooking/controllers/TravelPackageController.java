@@ -1,5 +1,6 @@
 package io.group17.travelagencybooking.controllers;
-
+import io.group17.travelagencybooking.dtos.TravelPackagedto;
+import io.group17.travelagencybooking.services.TravelPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,36 +25,36 @@ public class TravelPackageController {
 
     @GetMapping
     public ResponseEntity<?> getAllTravelPackages() {
-        return ResponseEntity.ok(travelPackageService.getAllTravelPackages());
+        return ResponseEntity.ok(travelPackageService.getAllTravelPackagesDto());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getTravelPackageById(@PathVariable Long id) {
-        TravelPackage travelPackage = travelPackageService.getTravelPackageById(id);
-        if (travelPackage == null) {
+        TravelPackagedto TravelPackagedto = travelPackageService.getTravelPackageByIdDto(id);
+        if (TravelPackagedto == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(travelPackage);
+        return ResponseEntity.ok(TravelPackagedto);
     }
 
     @PostMapping
-    public ResponseEntity<?> createTravelPackage(@RequestBody TravelPackage travelPackage) {
-        TravelPackage createdPackage = travelPackageService.createTravelPackage(travelPackage);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPackage);
+    public ResponseEntity<?> createTravelPackage(@RequestBody TravelPackagedto TravelPackagedto) {
+        TravelPackagedto createdPackageDto = travelPackageService.createTravelPackagedto(TravelPackagedto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPackageDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateTravelPackage(@PathVariable Long id, @RequestBody TravelPackage updatedPackage) {
-        TravelPackage updated = travelPackageService.updateTravelPackage(id, updatedPackage);
-        if (updated == null) {
+    public ResponseEntity<?> updateTravelPackage(@PathVariable Long id, @RequestBody TravelPackagedto updatedPackageDto) {
+        TravelPackagedto updatedDto = travelPackageService.updateTravelPackagedto(id, updatedPackageDto);
+        if (updatedDto == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(updated);
+        return ResponseEntity.ok(updatedDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTravelPackage(@PathVariable Long id) {
-        travelPackageService.deleteTravelPackage(id);
+        travelPackageService.deleteTravelPackageById(id);
         return ResponseEntity.noContent().build();
     }
 }
