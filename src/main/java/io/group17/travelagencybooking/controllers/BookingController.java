@@ -19,7 +19,6 @@ import io.group17.travelagencybooking.services.BookingService;
 @RequestMapping("/bookings")
 public class BookingController {
 
-    @Autowired
     private BookingService bookingService;
 
     @GetMapping
