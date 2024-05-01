@@ -24,4 +24,8 @@ public class BookingUtils
         booking.setTravelPackage(TravelPackageUtils.mapToTravelPackage(bookingDto.getTravelPackagedto()));
         return booking;
     }
+
+    public static Booking updateBookingFromDto(Booking booking, Bookingdto updatedBookingDto) {
+        return booking;
+    }
 }
