@@ -11,4 +11,12 @@ public class CustomerUtils {
         customerDto.setEmailId(customer.getEmailId());
         return customerDto;
     }
+
+    public static Customer mapToCustomer(Customerdto customerDto) {
+        Customer customer = new Customer();
+        customer.setName(customerDto.getName());
+        customer.setContactNumber(customerDto.getContactNumber());
+        customer.setEmailId(customerDto.getEmailId());
+        return customer;
+    }
 }

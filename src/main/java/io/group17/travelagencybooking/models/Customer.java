@@ -2,7 +2,7 @@ package io.group17.travelagencybooking.models;
 
 public class Customer extends User
 {
-    public Customer(String name, String contactNumber, String emailId) {
+    public Customer() {
         super(name, contactNumber, emailId);
         setRole(UserType.CUSTOMER);
     }

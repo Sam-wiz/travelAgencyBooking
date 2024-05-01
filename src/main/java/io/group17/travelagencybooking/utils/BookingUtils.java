@@ -13,4 +13,14 @@ public class BookingUtils {
         bookingDto.setTravelPackagedto(TravelPackageUtils.mapToTravelPackageDto(booking.getTravelPackage()));
         return bookingDto;
     }
+
+    public static Booking mapToBooking(Bookingdto bookingDto) {
+        Booking booking = new Booking();
+        booking.setNumberOfTravelers(bookingDto.getNumberOfTravelers());
+        booking.setTotalCost(bookingDto.getTotalCost());
+        booking.setBookingDate(bookingDto.getBookingDate());
+        booking.setCustomer(CustomerUtils.mapToCustomer(bookingDto.getCustomerdto()));
+        booking.setTravelPackage(TravelPackageUtils.mapToTravelPackage(bookingDto.getTravelPackagedto()));
+        return booking;
+    }
 }

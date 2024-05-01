@@ -11,4 +11,12 @@ public class DestinationUtils {
         destinationDto.setPopularAttractions(destination.getPopularAttractions());
         return destinationDto;
     }
+
+    public static Destination mapToDestination(Destinationdto destinationDto) {
+        Destination destination = new Destination();
+        destination.setName(destinationDto.getName());
+        destination.setLocationDescription(destinationDto.getLocationDescription());
+        destination.setPopularAttractions(destinationDto.getPopularAttractions());
+        return destination;
+    }
 }
