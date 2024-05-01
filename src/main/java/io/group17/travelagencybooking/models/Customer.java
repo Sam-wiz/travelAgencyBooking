@@ -6,4 +6,7 @@ public class Customer extends User
         super(name, contactNumber, emailId);
         setRole(UserType.CUSTOMER);
     }
+
+    public void setId(Long id) {
+    }
 }
