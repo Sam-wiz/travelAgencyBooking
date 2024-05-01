@@ -1,21 +1,18 @@
-package io.group17.travelagencybooking.controllers;
+package io.group17.travelagencybooking.services;
 
+import io.group17.travelagencybooking.controllers.DestinationController;
 import io.group17.travelagencybooking.models.Destination;
-import io.group17.travelagencybooking.services.DestinationService;
-import io.group17.travelagencybooking.services.DestinationServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class DestinationControllerTest {
+class DestinationServiceTest {
     @Autowired
     private DestinationController destinationController;
 
@@ -36,7 +33,7 @@ class DestinationControllerTest {
 
         System.out.println(destination.getPopularAttractions()); // null
 
-        ResponseEntity<> outputDestination = destinationController.getDestinationById(1L);
+        ResponseEntity<?> outputDestination = destinationController.getDestinationById(1L);
 
         assertEquals(destination, outputDestination);
 
