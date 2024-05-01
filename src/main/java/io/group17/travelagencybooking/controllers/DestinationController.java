@@ -17,12 +17,22 @@ public class DestinationController {
     private DestinationService destinationService;
 
     //Create a new destination
-
     @PostMapping("")
     public ResponseEntity<Destination> createDestination(@RequestBody Destination destination){
         Destination createdDestination = destinationService.createDestination(destination);
         return new ResponseEntity<>(createdDestination, HttpStatus.CREATED);
-//        return null;
+    }
+    //Get a destination by Id
+    @GetMapping("/{destinationId}")
+    public ResponseEntity<Destination> getDestinationById(@PathVariable Long destinationId){
+        Destination destination = destinationService.getDestinationById(destinationId);
+        return new ResponseEntity<>(destination, HttpStatus.OK);
+    }
+    //Update a destination by Id
+    @PutMapping("/{destinationId}")
+    public ResponseEntity<Destination> updateDestinationById(@PathVariable Long destinationId, @RequestBody Destination destination) {
+        Destination updatedDestination = destinationService.updateDestination(destinationId, destination);
+        return new ResponseEntity<>(updatedDestination, HttpStatus.OK);
     }
     //Get all destinations
     @GetMapping
@@ -30,26 +40,10 @@ public class DestinationController {
         List<Destination> destinations = destinationService.getAllDestinations();
         return new ResponseEntity<>(destinations, HttpStatus.OK);
     }
-    //Get a destination by Id
-    @GetMapping("/{destinationId}")
-    public ResponseEntity<Destination> getDestinationById(@PathVariable Long destinationId){
-        Destination destination = destinationService.getDestinationById(destinationId);
-        return new ResponseEntity<>(destination, HttpStatus.OK);
-//        return null;
-
-    }
-    //Update a destination by Id
-    @PutMapping("/{destinationId}")
-    public ResponseEntity<Destination> updateDestinationById(@PathVariable Long destinationId, @RequestBody Destination destination) {
-        Destination updatedDestination = destinationService.updateDestination(destinationId, destination);
-        return new ResponseEntity<>(updatedDestination, HttpStatus.OK);
-//        return null;
-    }
     //Delete a destination
     @DeleteMapping("/{destinationId}")
     public ResponseEntity<Void> removeDestinationById(@PathVariable Long destinationId) {
         destinationService.deleteDestination(destinationId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        return null;
     }
 }

@@ -21,15 +21,12 @@ public class BookingController {
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         Booking createdBooking = bookingService.createBooking(booking);
         return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
-//        return null;
-
     }
     // Update an existing booking
     @PutMapping("/{bookingId}")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long bookingId, @RequestBody Booking booking) {
         Booking updatedBooking = bookingService.updateBooking(bookingId, booking);
         return new ResponseEntity<>(updatedBooking, HttpStatus.OK);
-//        return null;
     }
 
     // Cancel a booking
@@ -37,22 +34,17 @@ public class BookingController {
     public ResponseEntity<Void> deleteBooking(@PathVariable Long bookingId) {
         bookingService.deleteBooking(bookingId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        return null;
     }
-
     // Get all bookings
     @GetMapping
     public ResponseEntity<List<Booking>> getAllBookings() {
         List<Booking> bookings = bookingService.getAllBookings();
         return new ResponseEntity<>(bookings, HttpStatus.OK);
-//        return null;
     }
-
     // Get bookings for a specific customer
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<List<Booking>> getAllBookingsByCustomerId(@PathVariable Long customerId) {
         List<Booking> bookings = bookingService.getAllBookingsByCustomerId(customerId);
         return new ResponseEntity<>(bookings, HttpStatus.OK);
-//        return null;
     }
 }
