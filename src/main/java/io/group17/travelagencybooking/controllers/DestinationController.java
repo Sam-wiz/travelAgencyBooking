@@ -1,49 +1,59 @@
 package io.group17.travelagencybooking.controllers;
 
-import io.group17.travelagencybooking.models.Booking;
-import io.group17.travelagencybooking.models.Destination;
-import io.group17.travelagencybooking.services.BookingService;
-import io.group17.travelagencybooking.services.DestinationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import io.group17.travelagencybooking.models.Destination;
+import io.group17.travelagencybooking.services.DestinationService;
 
 @RestController
 @RequestMapping("/destinations")
 public class DestinationController {
-    private DestinationController destinationController;
+
+    @Autowired
     private DestinationService destinationService;
 
-    //Create a new destination
-    @PostMapping("")
-    public ResponseEntity<Destination> createDestination(@RequestBody Destination destination){
-        Destination createdDestination = destinationService.createDestination(destination);
-        return new ResponseEntity<>(createdDestination, HttpStatus.CREATED);
-    }
-    //Get a destination by Id
-    @GetMapping("/{destinationId}")
-    public ResponseEntity<Destination> getDestinationById(@PathVariable Long destinationId){
-        Destination destination = destinationService.getDestinationById(destinationId);
-        return new ResponseEntity<>(destination, HttpStatus.OK);
-    }
-    //Update a destination by Id
-    @PutMapping("/{destinationId}")
-    public ResponseEntity<Destination> updateDestinationById(@PathVariable Long destinationId, @RequestBody Destination destination) {
-        Destination updatedDestination = destinationService.updateDestination(destinationId, destination);
-        return new ResponseEntity<>(updatedDestination, HttpStatus.OK);
-    }
-    //Get all destinations
     @GetMapping
-    public ResponseEntity<List<Destination>> getAllDestinations(){
-        List<Destination> destinations = destinationService.getAllDestinations();
-        return new ResponseEntity<>(destinations, HttpStatus.OK);
+    public ResponseEntity<?> getAllDestinations() {
+        return ResponseEntity.ok(destinationService.getAllDestinations());
     }
-    //Delete a destination
-    @DeleteMapping("/{destinationId}")
-    public ResponseEntity<Void> removeDestinationById(@PathVariable Long destinationId) {
-        destinationService.deleteDestination(destinationId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getDestinationById(@PathVariable Long id) {
+        Destination destination = destinationService.getDestinationById(id);
+        if (destination == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(destination);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createDestination(@RequestBody Destination destination) {
+        Destination createdDestination = destinationService.createDestination(destination);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdDestination);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateDestination(@PathVariable Long id, @RequestBody Destination updatedDestination) {
+        Destination updated = destinationService.updateDestination(id, updatedDestination);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteDestination(@PathVariable Long id) {
+        destinationService.deleteDestination(id);
+        return ResponseEntity.noContent().build();
     }
 }
