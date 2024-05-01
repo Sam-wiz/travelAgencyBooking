@@ -11,11 +11,17 @@ import io.group17.travelagencybooking.models.Destination;
 import io.group17.travelagencybooking.models.TravelPackage;
 import io.group17.travelagencybooking.repositories.DestinationRepository;
 import io.group17.travelagencybooking.repositories.TravelPackageRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DestinationServiceImpl implements DestinationService {
     @Autowired
     private DestinationRepository destinationRepository;
     private TravelPackageRepository travelPackageRepository;
+    public DestinationServiceImpl(DestinationRepository destinationRepository, TravelPackageRepository travelPackageRepository){
+        this.destinationRepository = destinationRepository;
+        this.travelPackageRepository = travelPackageRepository;
+    }
 
     @Override
     public List<Destination> getAllDestinations() {
