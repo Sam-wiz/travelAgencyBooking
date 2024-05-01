@@ -1,2 +1,4 @@
-package io.group17.travelagencybooking.dtos;public class Destinationdto {
+package io.group17.travelagencybooking.dtos;
+
+public class Destinationdto {
 }

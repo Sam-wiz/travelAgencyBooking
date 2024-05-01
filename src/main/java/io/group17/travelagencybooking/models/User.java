@@ -12,6 +12,7 @@ public class User
     private String Name;
     private String contactNumber;
     private String emailId;
+    private UserType role;
 
     public int getId() {
         return id;
@@ -46,4 +47,9 @@ public class User
         this.contactNumber = contactNumber;
         this.emailId = emailId;
     }
+
+    public void setRole(UserType role) {
+        this.role = role;
+    }
+
 }
