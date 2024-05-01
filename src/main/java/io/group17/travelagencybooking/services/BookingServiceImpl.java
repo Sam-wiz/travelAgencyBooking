@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import io.group17.travelagencybooking.models.Booking;
 import io.group17.travelagencybooking.repositories.BookingRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BookingServiceImpl implements BookingService{
      @Autowired
     private BookingRepository bookingRepository;

@@ -31,13 +31,40 @@ class BookingServiceTest {
 
     @Test
     void createBooking() {
+        Booking booking = new Booking();
+
+        booking.setId(1L);
+        booking.setNumberOfTravelers(100);
+        booking.setTotalCost(10000.0);
+        booking.setBookingDate("01/05/2024");
+
+        Booking outputBooking = bookingService.createBooking(booking);
+        assertEquals(booking, outputBooking);
     }
 
     @Test
     void updateBooking() {
-    }
+        Booking booking = new Booking();
 
+        booking.setId(1L);
+        booking.setNumberOfTravelers(100);
+        booking.setTotalCost(10000.0);
+        booking.setBookingDate("01/05/2024");
+
+        Booking outputBooking = bookingService.updateBooking(1L, booking);
+        assertEquals(booking, outputBooking);
+    }
     @Test
     void deleteBooking() {
+        Booking booking = new Booking();
+
+        booking.setId(1878L);
+        booking.setNumberOfTravelers(100);
+        booking.setTotalCost(10000.0);
+        booking.setBookingDate("01/05/2024");
+
+        Booking outputBooking = bookingService.createBooking(booking);
+        bookingService.deleteBooking(1878L);
+        assertEquals(booking, outputBooking);
     }
 }
