@@ -9,4 +9,4 @@ public interface TravelPackageService {
     TravelPackage createTravelPackage(TravelPackage travelPackage);
     TravelPackage updateTravelPackage(long id, TravelPackage updatedTravelPackage);
     void deleteTravelPackage(long id);  
-} 
+}
