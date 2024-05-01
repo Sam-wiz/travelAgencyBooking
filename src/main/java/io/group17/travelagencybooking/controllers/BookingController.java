@@ -28,6 +28,7 @@ public class BookingController {
 
     @GetMapping
     public ResponseEntity<?> getAllBookings() {
+
         return ResponseEntity.ok(bookingService.getAllBookings());
     }
 
@@ -54,10 +55,17 @@ public class BookingController {
         }
         return ResponseEntity.ok(updated);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable Long id) {
         bookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("{customerId}")
+    public ResponseEntity<?> getAllBookingsByCustomerId(@PathVariable Long customerId){
+        return ResponseEntity.ok(bookingService.getAllBookingsByCustomerId(customerId));
+    }
+    @GetMapping("{travelPackageId}")
+    public ResponseEntity<?> getAllBookingsByPackageId(@PathVariable Long travelPackageId){
+        return ResponseEntity.ok(bookingService.getAllBookingsByCustomerId(travelPackageId));
     }
 }
