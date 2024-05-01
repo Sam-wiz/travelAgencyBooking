@@ -8,11 +8,14 @@ import io.group17.travelagencybooking.exceptions.DestinationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.group17.travelagencybooking.models.Destination;
+import io.group17.travelagencybooking.models.TravelPackage;
 import io.group17.travelagencybooking.repositories.DestinationRepository;
+import io.group17.travelagencybooking.repositories.TravelPackageRepository;
 
 public class DestinationServiceImpl implements DestinationService {
     @Autowired
     private DestinationRepository destinationRepository;
+    private TravelPackageRepository travelPackageRepository;
 
     @Override
     public List<Destination> getAllDestinations() {
@@ -53,5 +56,11 @@ public class DestinationServiceImpl implements DestinationService {
     public void deleteDestination(long id) {
 
         destinationRepository.deleteById(id);
-    }   
+    }
+
+    @Override
+    public List<TravelPackage> getAllTravelPackages(long id) {
+        return travelPackageRepository.findByDestinationId(id); 
+    }
+           
 }

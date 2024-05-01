@@ -1,50 +1,59 @@
 package io.group17.travelagencybooking.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import io.group17.travelagencybooking.services.BookingService;
 import io.group17.travelagencybooking.models.Booking;
-import java.util.*;
+import io.group17.travelagencybooking.services.BookingService;
 
 @RestController
 @RequestMapping("/bookings")
 public class BookingController {
-    private BookingController bookingController;
+
+    @Autowired
     private BookingService bookingService;
 
-    // Create a new booking
-    @PostMapping
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Booking createdBooking = bookingService.createBooking(booking);
-        return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
-    }
-    // Update an existing booking
-    @PutMapping("/{bookingId}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long bookingId, @RequestBody Booking booking) {
-        Booking updatedBooking = bookingService.updateBooking(bookingId, booking);
-        return new ResponseEntity<>(updatedBooking, HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<?> getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAllBookings());
     }
 
-    // Cancel a booking
-    @DeleteMapping("/{bookingId}")
-    public ResponseEntity<Void> deleteBooking(@PathVariable Long bookingId) {
-        bookingService.deleteBooking(bookingId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getBookingById(@PathVariable Long id) {
+        Booking booking = bookingService.getBookingById(id);
+        if (booking == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(booking);
     }
-    // Get all bookings
-    @GetMapping
-    public ResponseEntity<List<Booking>> getAllBookings() {
-        List<Booking> bookings = bookingService.getAllBookings();
-        return new ResponseEntity<>(bookings, HttpStatus.OK);
+
+    @PostMapping
+    public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
+        Booking createdBooking = bookingService.createBooking(booking);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
     }
-    // Get bookings for a specific customer
-    @GetMapping("/customer/{customerId}")
-    public ResponseEntity<List<Booking>> getAllBookingsByCustomerId(@PathVariable Long customerId) {
-        List<Booking> bookings = bookingService.getAllBookingsByCustomerId(customerId);
-        return new ResponseEntity<>(bookings, HttpStatus.OK);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateBooking(@PathVariable Long id, @RequestBody Booking updatedBooking) {
+        Booking updated = bookingService.updateBooking(id, updatedBooking);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBooking(@PathVariable Long id) {
+        bookingService.deleteBooking(id);
+        return ResponseEntity.noContent().build();
     }
 }

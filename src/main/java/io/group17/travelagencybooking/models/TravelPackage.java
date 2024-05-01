@@ -3,6 +3,7 @@ package io.group17.travelagencybooking.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +20,6 @@ public class TravelPackage {
     private int duration;
 
     @ManyToOne
+    @JoinColumn(name = "destination_id") 
     private Destination destination;
 }

@@ -1,13 +1,15 @@
 package io.group17.travelagencybooking.services;
 
-import io.group17.travelagencybooking.dtos.Customerdto;
-import io.group17.travelagencybooking.models.Customer;
-import io.group17.travelagencybooking.repositories.CustomerRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import io.group17.travelagencybooking.dtos.Customerdto;
+import io.group17.travelagencybooking.models.Booking;
+import io.group17.travelagencybooking.models.Customer;
+import io.group17.travelagencybooking.repositories.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService
@@ -53,4 +55,17 @@ public class CustomerServiceImpl implements CustomerService
         customerDto.setEmailId(customer.getEmailId());
         return customerDto;
     }
+
+    @Override
+    public List<Booking> getCurrentBookings(Long customerId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCurrentBookings'");
+    }
+
+    @Override
+    public List<Booking> getPastBookings(Long customerId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPastBookings'");
+    }
+    
 }

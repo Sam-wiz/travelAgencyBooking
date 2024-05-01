@@ -14,5 +14,5 @@ public class Destination {
     private Long id;
     private String name;
     private String locationDescription;
-    private String popularAttractions;    
+    private String popularAttractions;
 }
