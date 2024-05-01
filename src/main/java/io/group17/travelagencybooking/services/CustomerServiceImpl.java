@@ -1,19 +1,20 @@
 package io.group17.travelagencybooking.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.group17.travelagencybooking.dtos.Customerdto;
+import io.group17.travelagencybooking.ExceptionHandler.CustomerException.*;
 import io.group17.travelagencybooking.models.Booking;
 import io.group17.travelagencybooking.models.Customer;
 import io.group17.travelagencybooking.repositories.CustomerRepository;
 
 @Service
-public class CustomerServiceImpl implements CustomerService
-{
+public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
@@ -25,8 +26,12 @@ public class CustomerServiceImpl implements CustomerService
 
     @Override
     public Customerdto getCustomerById(Long id) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        return customer != null ? mapToCustomerDto(customer) : null;
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            return mapToCustomerDto(optionalCustomer.get());
+        } else {
+            throw new CustomerNotFoundException("Customer not found with ID: " + id);
+        }
     }
 
     @Override
@@ -39,13 +44,30 @@ public class CustomerServiceImpl implements CustomerService
 
     @Override
     public Customerdto updateCustomer(Customer customer) {
-        Customer updatedCustomer = customerRepository.save(customer);
-        return mapToCustomerDto(updatedCustomer);
+        return mapToCustomerDto(customer);
+    }
+
+    @Override
+    public Customerdto updateCustomer(Long id, Customerdto customerDto) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            Customer customer = optionalCustomer.get();
+            customer = mapToCustomer(customerDto);
+            Customer updatedCustomer = customerRepository.save(customer);
+            return mapToCustomerDto(updatedCustomer);
+        } else {
+            throw new CustomerNotFoundException("Customer not found with ID: " + id);
+        }
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        customerRepository.deleteById(id);
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            customerRepository.deleteById(id);
+        } else {
+            throw new CustomerNotFoundException("Customer not found with ID: " + id);
+        }
     }
 
     private Customerdto mapToCustomerDto(Customer customer) {
@@ -56,16 +78,23 @@ public class CustomerServiceImpl implements CustomerService
         return customerDto;
     }
 
+    private Customer mapToCustomer(Customerdto customerDto) {
+        Customer customer = new Customer();
+        customer.setName(customerDto.getName());
+        customer.setContactNumber(customerDto.getContactNumber());
+        customer.setEmailId(customerDto.getEmailId());
+        return customer;
+    }
+
     @Override
     public List<Booking> getCurrentBookings(Long customerId) {
-        // TODO Auto-generated method stub
+        // Should Complete
         throw new UnsupportedOperationException("Unimplemented method 'getCurrentBookings'");
     }
 
     @Override
-    public List<Booking> getPastBookings(Long customerId){
-        // TODO Auto-generated method stub
+    public List<Booking> getPastBookings(Long customerId) {
+        // Should Complete
         throw new UnsupportedOperationException("Unimplemented method 'getPastBookings'");
     }
-    
 }

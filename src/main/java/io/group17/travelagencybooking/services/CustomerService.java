@@ -12,6 +12,9 @@ public interface CustomerService
     Customerdto getCustomerById(Long id);
     List<Customerdto> getAllCustomers();
     Customerdto updateCustomer(Customer customer);
+
+    Customerdto updateCustomer(Long id, Customerdto customerDto);
+
     void deleteCustomer(Long id);
     List<Booking> getCurrentBookings(Long customerId);
     List<Booking> getPastBookings(Long customerId);
