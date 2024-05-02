@@ -15,6 +15,7 @@ public class StaffController
 
     @GetMapping("/travel-packages")
     public ResponseEntity<List<TravelPackage>> getAllTravelPackages() {
+
         return null;
     }
 
