@@ -15,5 +15,4 @@ public class Destination {
     private String name;
     private String locationDescription;
     private String popularAttractions;
-
 }
