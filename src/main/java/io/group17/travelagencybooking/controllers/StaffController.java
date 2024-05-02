@@ -1,7 +1,8 @@
 package io.group17.travelagencybooking.controllers;
 
 import io.group17.travelagencybooking.models.TravelPackage;
-import io.group17.travelagencybooking.services.TravelPackageService;
+import io.group17.travelagencybooking.services.TravelPackageServiceImpl;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController
 {
-    private TravelPackageService travelPackageService;
+    private TravelPackageServiceImpl travelPackageService;
 
     @GetMapping("/travel-packages")
     public ResponseEntity<List<TravelPackage>> getAllTravelPackages() {

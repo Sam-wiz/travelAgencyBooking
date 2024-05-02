@@ -3,6 +3,7 @@ package io.group17.travelagencybooking.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.group17.travelagencybooking.models.TravelPackage;
@@ -14,6 +15,7 @@ import io.group17.travelagencybooking.utils.TravelPackageUtils;
 @Service
 public abstract class TravelPackageServiceImpl implements TravelPackageService {
 
+    @Autowired
     private TravelPackageRepository travelPackageRepository;
 
     @Override

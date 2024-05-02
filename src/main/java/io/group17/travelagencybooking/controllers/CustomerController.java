@@ -3,7 +3,8 @@ package io.group17.travelagencybooking.controllers;
 import io.group17.travelagencybooking.dtos.Customerdto;
 import io.group17.travelagencybooking.models.Booking;
 import io.group17.travelagencybooking.models.Customer;
-import io.group17.travelagencybooking.services.CustomerService;
+import io.group17.travelagencybooking.services.CustomerServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerService;
 
     @PostMapping
     public ResponseEntity<Customerdto> createCustomer(@RequestBody Customer customer) {
