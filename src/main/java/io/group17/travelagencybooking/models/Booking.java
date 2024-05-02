@@ -25,4 +25,5 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "travel_package_id") 
     private TravelPackage travelPackage;
+
 }
