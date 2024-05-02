@@ -26,4 +26,5 @@ public class Booking {
     @JoinColumn(name = "travel_package_id") 
     private TravelPackage travelPackage;
 
+
 }
