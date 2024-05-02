@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import io.group17.travelagencybooking.utils.CustomerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,8 +79,10 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDto;
     }
 
-    private Customer mapToCustomer(Customerdto customerDto) {
-        Customer customer = new Customer();
+    private Customer mapToCustomer(Customerdto customerDto)
+    {
+        Customer customer1 = CustomerUtils.mapToCustomer(customerDto);
+        Customer customer = new Customer(customer1.getName(), customer1.getContactNumber(), customer1.getEmailId());
         customer.setName(customerDto.getName());
         customer.setContactNumber(customerDto.getContactNumber());
         customer.setEmailId(customerDto.getEmailId());
