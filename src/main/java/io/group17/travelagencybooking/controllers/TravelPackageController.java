@@ -1,6 +1,7 @@
 package io.group17.travelagencybooking.controllers;
 import io.group17.travelagencybooking.dtos.TravelPackagedto;
-import io.group17.travelagencybooking.services.TravelPackageService;
+import io.group17.travelagencybooking.services.TravelPackageServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.group17.travelagencybooking.models.TravelPackage;
-import io.group17.travelagencybooking.services.TravelPackageService;
-
 @RestController
 @RequestMapping("/travel-packages")
 public class TravelPackageController {
 
     @Autowired
-    private TravelPackageService travelPackageService;
+    private TravelPackageServiceImpl travelPackageService;
 
     @GetMapping
     public ResponseEntity<?> getAllTravelPackages() {

@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.group17.travelagencybooking.dtos.Bookingdto;
-import io.group17.travelagencybooking.services.BookingService;
+import io.group17.travelagencybooking.services.BookingServiceImpl;
 
 @RestController
 @RequestMapping("/bookings")
 public class BookingController {
 
-    private final BookingService bookingService;
+    private final BookingServiceImpl bookingService;
 
     @Autowired
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingServiceImpl bookingService) {
         this.bookingService = bookingService;
     }
 

@@ -1,5 +1,8 @@
 package io.group17.travelagencybooking.models;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Customer extends User
 {
     public Customer(String name, String contactNumber, String emailId) {

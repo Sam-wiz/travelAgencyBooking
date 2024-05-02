@@ -77,7 +77,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Bookingdto> getAllBookingsByPackageId(Long packageId) {
-        List<Booking> bookings = bookingRepository.findByTravelByPackageId(packageId);
+        List<Booking> bookings = bookingRepository.findByTravelPackageId(packageId);
         return bookings.stream()
                 .map(BookingUtils::mapToBookingDto)
                 .collect(Collectors.toList());

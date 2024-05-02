@@ -6,5 +6,5 @@ import io.group17.travelagencybooking.models.Booking;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findByCustomerId(Long customerId);
-    List<Booking> findByTravelByPackageId(Long packageId);
+    List<Booking> findByTravelPackageId(Long packageId);
 }

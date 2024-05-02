@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.group17.travelagencybooking.models.Destination;
-import io.group17.travelagencybooking.services.DestinationService;
+import io.group17.travelagencybooking.services.DestinationServiceImpl;
 
 @RestController
 @RequestMapping("/destinations")
 public class DestinationController {
 
     @Autowired
-    private DestinationService destinationService;
+    private DestinationServiceImpl destinationService;
 
     @GetMapping
     public ResponseEntity<?> getAllDestinations() {
