@@ -3,6 +3,7 @@ package io.group17.travelagencybooking.controllers;
 import io.group17.travelagencybooking.models.TravelPackage;
 import io.group17.travelagencybooking.services.TravelPackageServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController
 {
+    @Autowired
     private TravelPackageServiceImpl travelPackageService;
 
     @GetMapping("/travel-packages")

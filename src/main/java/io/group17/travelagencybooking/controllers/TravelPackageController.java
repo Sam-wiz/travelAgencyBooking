@@ -23,12 +23,12 @@ public class TravelPackageController {
 
     @GetMapping
     public ResponseEntity<?> getAllTravelPackages() {
-        return ResponseEntity.ok(travelPackageService.getAllTravelPackagesDto());
+        return ResponseEntity.ok(travelPackageService.getAllTravelPackages());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getTravelPackageById(@PathVariable Long id) {
-        TravelPackagedto TravelPackagedto = travelPackageService.getTravelPackageByIdDto(id);
+        TravelPackagedto TravelPackagedto = travelPackageService.getTravelPackageById(id);
         if (TravelPackagedto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -37,13 +37,13 @@ public class TravelPackageController {
 
     @PostMapping
     public ResponseEntity<?> createTravelPackage(@RequestBody TravelPackagedto TravelPackagedto) {
-        TravelPackagedto createdPackageDto = travelPackageService.createTravelPackagedto(TravelPackagedto);
+        TravelPackagedto createdPackageDto = travelPackageService.createTravelPackage(TravelPackagedto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPackageDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTravelPackage(@PathVariable Long id, @RequestBody TravelPackagedto updatedPackageDto) {
-        TravelPackagedto updatedDto = travelPackageService.updateTravelPackagedto(id, updatedPackageDto);
+        TravelPackagedto updatedDto = travelPackageService.updateTravelPackage(id, updatedPackageDto);
         if (updatedDto == null) {
             return ResponseEntity.notFound().build();
         }
@@ -52,7 +52,7 @@ public class TravelPackageController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTravelPackage(@PathVariable Long id) {
-        travelPackageService.deleteTravelPackageById(id);
+        travelPackageService.deleteTravelPackage(id);
         return ResponseEntity.noContent().build();
     }
 }

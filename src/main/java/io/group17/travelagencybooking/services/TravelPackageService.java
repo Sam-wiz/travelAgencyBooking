@@ -14,13 +14,4 @@ public interface TravelPackageService {
 
     void deleteTravelPackage(long id);
 
-    List<TravelPackagedto> getAllTravelPackagesDto();
-
-    TravelPackagedto getTravelPackageByIdDto(long id);
-
-    TravelPackagedto createTravelPackagedto(TravelPackagedto TravelPackagedto);
-
-    TravelPackagedto updateTravelPackagedto(long id, TravelPackagedto updatedPackageDto);
-
-    void deleteTravelPackageById(long id);
 }
