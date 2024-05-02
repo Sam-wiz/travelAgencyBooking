@@ -8,7 +8,7 @@ public interface TravelPackageService {
     List<TravelPackagedto> getAllTravelPackages();
     TravelPackagedto getTravelPackageById(long id);
     TravelPackagedto createTravelPackage(TravelPackagedto travelPackage);
-    TravelPackagedto updateTravelPackage(long id, TravelPackage updatedTravelPackage);
+    TravelPackage updateTravelPackage(long id, TravelPackage updatedTravelPackage);
 
     TravelPackagedto updateTravelPackage(long id, TravelPackagedto updatedTravelPackage);
 
