@@ -1,5 +1,6 @@
 package io.group17.travelagencybooking.controllers;
 
+import io.group17.travelagencybooking.dtos.Destinationdto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,14 +38,22 @@ public class DestinationController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createDestination(@RequestBody Destination destination) {
+    public ResponseEntity<?> createDestination(@RequestBody Destinationdto destinationDTO) {
+        Destination destination = new Destination();
+        destination.setName(destinationDTO.getName());
+        destination.setLocationDescription(destinationDTO.getLocationDescription());
+        destination.setPopularAttractions(destinationDTO.getPopularAttractions());
         Destination createdDestination = destinationService.createDestination(destination);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdDestination);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateDestination(@PathVariable Long id, @RequestBody Destination updatedDestination) {
-        Destination updated = destinationService.updateDestination(id, updatedDestination);
+    public ResponseEntity<?> updateDestination(@PathVariable Long id, @RequestBody Destinationdto updatedDestinationDTO) {
+        Destination destination = new Destination();
+        destination.setName(updatedDestinationDTO.getName());
+        destination.setLocationDescription(updatedDestinationDTO.getLocationDescription());
+        destination.setPopularAttractions(updatedDestinationDTO.getPopularAttractions());
+        Destination updated = destinationService.updateDestination(id, destination);
         if (updated == null) {
             return ResponseEntity.notFound().build();
         }
