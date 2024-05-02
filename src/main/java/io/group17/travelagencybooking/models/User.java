@@ -13,7 +13,8 @@ public class User
     private String contactNumber;
     private String emailId;
     private UserType role;
-
+    public User() {
+    }
     public int getId() {
         return id;
     }

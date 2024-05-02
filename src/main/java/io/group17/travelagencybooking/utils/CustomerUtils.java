@@ -12,7 +12,9 @@ public class CustomerUtils {
         return customerDto;
     }
 
-    public static Customer mapToCustomer(Customerdto customerDto) {
+    public static Customer mapToCustomer(Customerdto customerDto)
+    {
+
         Customer customer = new Customer();
         customer.setName(customerDto.getName());
         customer.setContactNumber(customerDto.getContactNumber());
