@@ -19,7 +19,6 @@ public class TravelPackage {
     private double price;
     private int duration;
 
-
     @ManyToOne
     @JoinColumn(name = "destination_id") 
     private Destination destination;
